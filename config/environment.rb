@@ -9,6 +9,7 @@ require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 require 'rubygems'
 
 require 'uri'
+require 'net/http'
 require 'pathname'
 
 require 'pg'
@@ -17,6 +18,9 @@ require 'logger'
 
 require 'sinatra'
 require "sinatra/reloader" if development?
+require 'active_support/core_ext/hash'
+
+require 'faker'
 
 require 'erb'
 
