@@ -1,4 +1,6 @@
-TOKEN = "dd4cf85cd0ee9ffb448340bc66507619"
+# TOKEN = "dd4cf85cd0ee9ffb448340bc66507619"
+TOKEN = "4a4ad4e690121617b837a13e60e36736"
+# TOKEN = "5b8d81de9ec2dee5ae3de9c5dd160dff"
 
 helpers do
   def get_emails(user)

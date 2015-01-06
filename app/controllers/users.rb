@@ -10,8 +10,6 @@ end
 #   inbox["messages"][0].keys.to_s
 # end
 
-# altcode 4a4ad4e690121617b837a13e60e36736
-
 get '/users/:email_address/email' do
   user = User.find_or_create_by(email_address: params[:email_address]) do |user|
     user.id = 93
