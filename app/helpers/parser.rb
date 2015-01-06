@@ -10,7 +10,7 @@ helpers do
     case response.code
     when '200'
       # return new_emails(user)
-      if new_emails(user) > 0 || initial_fetch?(user)
+      if new_emails(user) > 0
         inbox = Hash.from_xml(response.body)
         parse_into_objects(inbox["messages"], new_emails(user))
       end
@@ -24,17 +24,13 @@ helpers do
     end
   end
 
-  def initial_fetch?(user)
-    return true if user.received_emails.empty?
-  end
-
   def new_emails(user)
     query = "count?last_id=" + user.most_recent_received_email_id.to_s + "&api_token="
     uri = URI('http://dbc-mail.herokuapp.com/api/' + user.email_address + '/messages/' + query + TOKEN)
     response = Net::HTTP.get_response(uri)
     hash = Hash.from_xml(response.body)
 
-    return hash["hash"]["count"].to_i rescue 50
+    return hash["hash"]["count"].to_i
 
     # http://dbc-mail.herokuapp.com/api/supermonkey@mafia.com/messages/count?last_id=10&api_token=dd4cf85cd0ee9ffb448340bc66507619
   end
