@@ -7,4 +7,12 @@ class User < ActiveRecord::Base
       user.name = Faker::Name.name
     end
   end
+
+  def most_recent_received_email_id
+    if self.received_emails.empty?
+      0
+    else
+      self.received_emails.order(:created_at).first.id
+    end
+  end
 end
