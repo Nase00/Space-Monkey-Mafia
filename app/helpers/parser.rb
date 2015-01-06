@@ -31,16 +31,18 @@ helpers do
     hash = Hash.from_xml(response.body)
 
     return hash["hash"]["count"].to_i
-
-    # http://dbc-mail.herokuapp.com/api/supermonkey@mafia.com/messages/count?last_id=10&api_token=dd4cf85cd0ee9ffb448340bc66507619
   end
 
   def parse_into_objects(xml_string, num)
-    xml_string.each_with_index do |hash, i|
-      if i < num
-        receiver = User.find_or_create({id: hash["email_address_id"]})
-        sender = User.find_or_create({email_address: hash["from"]})
-        email = Email.create!(id: hash["id"], subject: hash["subject"], receiver: receiver, sender: sender, body: hash["body"])
+    xml_string.each do |hash|
+      receiver = User.find_or_create({id: hash["email_address_id"]})
+      sender = User.find_or_create({email_address: hash["from"]})
+      Email.find_or_create_by(id: hash["id"]) do |email|
+        email.subject = hash["subject"]
+        email.receiver = receiver
+        email.sender = sender
+        subject = hash["subject"]
+        body = hash["body"]
       end
     end
   end
