@@ -16,5 +16,10 @@ get '/users/:email_address/email' do
     user.name = "Super Monkey Mafia"
     user.password = "hunter2"
   end
+
   get_emails(user)
+  #   end
+  #   counter += 1
+  #   break if counter > 30
+  # end
 end
