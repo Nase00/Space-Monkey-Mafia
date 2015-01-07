@@ -11,13 +11,9 @@ end
 # end
 
 get '/users/:email_address/email' do
-  user = User.find_or_create_by(email_address: params[:email_address]) do |user|
-    user.id = 93
-    user.name = "Super Monkey Mafia"
-    user.password = "hunter2"
-  end
+  user = User.find_by(email_address: params[:email_address])
 
-  get_emails(user)
+  user.get_emails
   #   end
   #   counter += 1
   #   break if counter > 30

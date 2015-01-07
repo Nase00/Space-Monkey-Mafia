@@ -1,4 +1,3 @@
-# be rake db:drop && be rake db:create && be rake db:migrate && be rake db:seed
 # Log queries to STDOUT in development
 if Sinatra::Application.development?
   ActiveRecord::Base.logger = Logger.new(STDOUT)
