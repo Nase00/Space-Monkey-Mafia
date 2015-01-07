@@ -1,3 +1,4 @@
+# XXX_YOLO_XXX_ANARCHY4LYFE
 # TOKEN = "dd4cf85cd0ee9ffb448340bc66507619"
 TOKEN = "4a4ad4e690121617b837a13e60e36736"
 # TOKEN = "5b8d81de9ec2dee5ae3de9c5dd160dff"
@@ -9,8 +10,7 @@ helpers do
     response = Net::HTTP.get_response(uri)
     case response.code
     when '200'
-      # return new_emails(user)
-      if new_emails(user) > 0
+      until new_emails(user) == 0 # should fetch emails until API says no new emails to check
         inbox = Hash.from_xml(response.body)
         parse_into_objects(inbox["messages"], new_emails(user))
       end
