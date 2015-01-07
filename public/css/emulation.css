@@ -1,0 +1,12 @@
+body {
+  background-color: #ccc;
+}
+
+.simulate-mobile {
+  margin-top: 2em;
+  background-color: white;
+  width: 320px;
+  height: 568px;
+  margin-left: auto;
+  margin-right: auto;
+}
