@@ -39,6 +39,12 @@ configure do
 
   # Set the views to
   set :views, File.join(Sinatra::Application.root, "app", "views")
+
+  before do
+    headers 'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
+  end
+
 end
 
 # Set up the controllers and helpers
