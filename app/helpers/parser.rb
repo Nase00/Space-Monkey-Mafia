@@ -9,15 +9,21 @@ helpers do
     def self.into_objects(xml_string)
       xml_string.each do |hash|
         receiver = User.find_by({id: hash["email_address_id"]})
-        sender = User.find_by({email_address: hash["from"]})
         Email.find_or_create_by(id: hash["id"]) do |email|
           email.subject = hash["subject"]
           email.receiver = receiver
-          email.sender = sender
-          subject = hash["subject"]
-          body = hash["body"]
+          email.from = hash["from"]
+          email.body = hash["body"]
         end
       end
     end
   end
+
+  module DeleteEmails # For testing, deletes 10 random emails
+    def self.newer_than_id_100
+      emails = Email.where("id > ?", 100)
+      emails.delete_all
+    end
+  end
+
 end

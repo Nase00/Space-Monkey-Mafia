@@ -1,5 +1,5 @@
 get '/' do
-  redirect '/users/:email_address/email'
+  redirect '/index.html'
 end
 
 # get '/users/:email_address/email' do # Local test route

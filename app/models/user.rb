@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   has_many :received_emails, class_name: "Email", foreign_key: :receiver_id
-  has_many :sent_emails, class_name: "Email", foreign_key: :sender_id
+  # has_many :sent_emails, class_name: "Email", foreign_key: :sender_id
 
   def show_emails
-    Email.where(receiver_id: self.id).to_json
+    Email.where(receiver_id: self.id).order(created_at: :desc).to_json
   end
 
   def get_emails
