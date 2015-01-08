@@ -15,11 +15,20 @@
         <script src="vendor/js/underscore-min.js"></script>
 
         <script src="scripts/app.js"></script>
+        <script src="scripts/views/email_list_view.js"></script>
+        <script src="scripts/views/email_row_view.js"></script>
+
+        <script src="scripts/models/email.js"></script>
     </head>
     <body>
 
       <div id="content" class="simulate-mobile">
       </div>
+
+    <script type="template" id="template">
+        <h2>Emails</h2>
+        <div id="emails"></div>
+    </script>
 
     </body>
 </html>

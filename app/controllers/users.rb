@@ -1,3 +1,5 @@
+require 'json'
+
 get '/' do
   redirect '/index.html'
 end
@@ -13,6 +15,7 @@ end
 get '/users/:email_address/email' do
   user = User.find_by(email_address: params[:email_address])
 
+  content_type :json
   user.get_emails
   #   end
   #   counter += 1
